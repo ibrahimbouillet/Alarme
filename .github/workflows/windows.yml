@@ -1,0 +1,42 @@
+name: Windows build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: msys2/setup-msys2@v2
+        with:
+          msystem: UCRT64
+          update: true
+          install: >-
+            mingw-w64-ucrt-x86_64-gcc
+            mingw-w64-ucrt-x86_64-cmake
+            mingw-w64-ucrt-x86_64-ninja
+      - name: Configure
+        run: cmake --preset windows-release
+      - name: Build
+        run: cmake --build --preset windows-release --parallel
+      - name: Test deterministic core behavior
+        run: ctest --preset windows-release -R '^(alarm_engine|elapsed_cycle|widget_state)$' --no-tests=error
+      # Hosted runners cannot establish physical audio, wake or interactive desktop behavior.
+      - name: Prepare downloadable package
+        run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1 -SkipBuild -SkipTests
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ALARM-windows-x64
+          path: |
+            out/releases/*.zip
+            out/releases/*.sha256
+          if-no-files-found: error

@@ -1,0 +1,28 @@
+# Local builds, installations and test observations
+/build/
+/build-*/
+/out/
+*.user
+*.log
+/.local/
+/CMakeUserPresets.json
+/.vs/
+
+# Personal settings, credentials and generated packages
+.env
+.env.*
+!.env.example
+*.pfx
+*.p12
+*.pem
+*.key
+*.msix
+**/bin/
+**/obj/
+/prototypes/lock-widget/package/
+/docs/evidence/
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini

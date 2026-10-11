@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- Copyright (c) 2026 Ibrahim Bouillet. SPDX-License-Identifier: MIT -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>ALARM — local widget</title>
+  <link rel="stylesheet" href="widget.css">
+  <script src="widget.js" defer></script>
+</head>
+<body>
+  <article class="glass" data-phase="closed" aria-label="ALARM state" tabindex="0">
+    <div class="light" aria-hidden="true"></div>
+    <div class="top">
+      <div class="heading"><span class="brand">ALARM</span><span class="dot" aria-hidden="true"></span></div>
+      <img class="logo" src="alarm.png" width="24" height="24" alt="ALARM">
+    </div>
+    <div class="time" id="time">—</div>
+    <div class="status" id="status" role="status">ALARM closed</div>
+    <div class="next" id="next">Open ALARM to start the engine</div>
+    <div class="sound" id="sound"></div>
+  </article>
+</body>
+</html>

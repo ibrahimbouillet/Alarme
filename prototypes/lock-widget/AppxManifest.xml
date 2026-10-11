@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2026 Ibrahim Bouillet. SPDX-License-Identifier: MIT -->
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  xmlns:uap10="http://schemas.microsoft.com/appx/manifest/uap/windows10/10"
+  xmlns:com="http://schemas.microsoft.com/appx/manifest/com/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap uap3 uap10 com rescap">
+  <Identity Name="Ibrahim.ALARM.WidgetPrototype" Publisher="CN=ALARM Widget Prototype"
+    Version="0.1.2.0" ProcessorArchitecture="x64" />
+  <Properties>
+    <DisplayName>ALARM — widget prototype</DisplayName>
+    <PublisherDisplayName>Ibrahim Bouillet</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.22000.0" MaxVersionTested="10.0.26200.0" />
+    <PackageDependency Name="Microsoft.WindowsAppRuntime.2"
+      Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+      MinVersion="2.3.1.0" />
+  </Dependencies>
+  <Resources><Resource Language="en-us" /></Resources>
+  <Applications>
+    <Application Id="App" Executable="ALARM.WidgetPrototype.exe" uap10:RuntimeBehavior="win32App" uap10:TrustLevel="mediumIL">
+      <uap:VisualElements DisplayName="ALARM — widget prototype" Description="ALARM engine state: Small prototype"
+        BackgroundColor="transparent" Square150x150Logo="Assets\Square150x150Logo.png"
+        Square44x44Logo="Assets\Square44x44Logo.png" AppListEntry="none" />
+      <Extensions>
+        <com:Extension Category="windows.comServer">
+          <com:ComServer>
+            <com:ExeServer Executable="ALARM.WidgetPrototype.exe"
+              Arguments="-RegisterProcessAsComServer" DisplayName="ALARM widget prototype provider">
+              <com:Class Id="F61B9C5D-6D5B-452A-8A3B-941C8098A4D6" DisplayName="ALARM widget prototype provider" />
+            </com:ExeServer>
+          </com:ComServer>
+        </com:Extension>
+        <uap3:Extension Category="windows.appExtension">
+          <uap3:AppExtension Name="com.microsoft.windows.widgets" DisplayName="ALARM — widget prototype"
+            Id="alarm.widget.prototype" PublicFolder="Public">
+            <uap3:Properties>
+              <WidgetProvider>
+                <ProviderIcons><Icon Path="Assets\StoreLogo.png" /></ProviderIcons>
+                <Activation><CreateInstance ClassId="F61B9C5D-6D5B-452A-8A3B-941C8098A4D6" /></Activation>
+                <Definitions>
+                  <Definition Id="AlarmSmallPrototype" DisplayName="ALARM (prototype)"
+                    Description="ALARM engine time and state. Open ALARM after signing in."
+                    AllowMultiple="false" AdditionalInfoUri="ibrahim-alarm://open">
+                    <Capabilities><Capability><Size Name="small" /></Capability></Capabilities>
+                    <ThemeResources>
+                      <Icons><Icon Path="Assets\Square44x44Logo.png" /></Icons>
+                      <Screenshots><Screenshot Path="Assets\SmallPreview.png"
+                        DisplayAltText="Illustrative ALARM preview: 06:00, alarm enabled" /></Screenshots>
+                    </ThemeResources>
+                  </Definition>
+                  <Definition Id="AlarmSmallWebPrototype" DisplayName="ALARM glass (local prototype)"
+                    Description="Local Small HTML card connected to the ALARM engine. Lock-screen rendering needs verification."
+                    AllowMultiple="false" AdditionalInfoUri="ibrahim-alarm://open"
+                    ContentUri="https://alarm-widget.invalid/index.html"
+                    WebRequestFilter="https://alarm-widget.invalid/*">
+                    <Capabilities><Capability><Size Name="small" /></Capability></Capabilities>
+                    <ThemeResources>
+                      <Icons><Icon Path="Assets\Square44x44Logo.png" /></Icons>
+                      <Screenshots><Screenshot Path="Assets\SmallPreview.png"
+                        DisplayAltText="Illustrative preview; Windows HTML rendering still requires verification" /></Screenshots>
+                    </ThemeResources>
+                  </Definition>
+                </Definitions>
+              </WidgetProvider>
+            </uap3:Properties>
+          </uap3:AppExtension>
+        </uap3:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+  <Capabilities><rescap:Capability Name="runFullTrust" /></Capabilities>
+</Package>

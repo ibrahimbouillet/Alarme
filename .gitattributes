@@ -1,0 +1,28 @@
+* text=auto
+/.gitattributes text eol=lf
+/.gitignore text eol=lf
+/LICENSE text eol=lf
+*.txt text eol=lf
+*.cmake text eol=lf
+*.rc text eol=lf
+*.manifest text eol=lf
+*.csproj text eol=lf
+*.cs text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.js text eol=lf
+*.cpp text eol=lf
+*.h text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.xml text eol=lf
+*.ps1 text eol=crlf
+*.exe binary
+*.ico binary
+*.png binary
+*.zip binary
+# Preserve upstream license notices verbatim, including their original whitespace.
+/licenses/** -text whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
+/prototypes/lock-widget/Microsoft-Samples-LICENSE.txt -text whitespace=-blank-at-eol,-blank-at-eof,-space-before-tab
+*.svg text eol=lf

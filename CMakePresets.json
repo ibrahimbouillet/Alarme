@@ -1,0 +1,33 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": { "major": 3, "minor": 25, "patch": 0 },
+  "configurePresets": [
+    {
+      "name": "windows-release",
+      "displayName": "Windows Release (GCC UCRT64 / Ninja from PATH)",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release",
+        "CMAKE_CXX_COMPILER": "g++",
+        "ALARM_BUILD_DEMOS": "OFF"
+      }
+    },
+    {
+      "name": "windows-msvc",
+      "displayName": "Windows Release (Visual Studio 2022, x64)",
+      "generator": "Visual Studio 17 2022",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/build-msvc",
+      "cacheVariables": { "ALARM_BUILD_DEMOS": "OFF" }
+    }
+  ],
+  "buildPresets": [
+    { "name": "windows-release", "configurePreset": "windows-release" },
+    { "name": "windows-msvc", "configurePreset": "windows-msvc", "configuration": "Release" }
+  ],
+  "testPresets": [
+    { "name": "windows-release", "configurePreset": "windows-release", "output": { "outputOnFailure": true } },
+    { "name": "windows-msvc", "configurePreset": "windows-msvc", "configuration": "Release", "output": { "outputOnFailure": true } }
+  ]
+}

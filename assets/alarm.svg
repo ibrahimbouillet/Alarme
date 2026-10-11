@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#67e8f9"/><stop offset=".43" stop-color="#6379f5"/><stop offset="1" stop-color="#ad58de"/></linearGradient>
+    <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="white" stop-opacity=".85"/><stop offset=".5" stop-color="white" stop-opacity=".06"/><stop offset="1" stop-color="#eadcff" stop-opacity=".5"/></linearGradient>
+    <radialGradient id="light"><stop stop-color="white" stop-opacity=".62"/><stop offset="1" stop-color="white" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect x="42" y="42" width="940" height="940" rx="222" fill="url(#body)"/>
+  <rect x="54" y="54" width="916" height="916" rx="211" fill="none" stroke="url(#edge)" stroke-width="17"/>
+  <ellipse cx="295" cy="170" rx="490" ry="300" fill="url(#light)"/>
+  <g stroke="#253b87" opacity=".22" stroke-width="47" fill="none" stroke-linecap="round" transform="translate(0 19)">
+    <circle cx="512" cy="537" r="235"/><path d="M512 537L423 399M512 537L658 456M292 303Q338 230 407 244M617 244Q686 230 732 303M365 746L319 809M659 746L705 809"/>
+  </g>
+  <g stroke="white" stroke-width="43" fill="none" stroke-linecap="round">
+    <circle cx="512" cy="537" r="235"/><path d="M512 537L423 399M512 537L658 456M292 303Q338 230 407 244M617 244Q686 230 732 303M365 746L319 809M659 746L705 809"/>
+  </g>
+  <circle cx="512" cy="537" r="29" fill="white"/>
+</svg>
