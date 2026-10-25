@@ -6,18 +6,17 @@ ALARM is a native Windows desktop alarm programmed by **Ibrahim Bouillet**. Set 
 
 Requirements: Windows 10 or 11, a 64-bit PC, an audio output, and a Direct3D 11 compatible graphics device.
 
-1. Extract `ALARM-0.6.1-windows-x64.zip` into a folder.
-2. Open PowerShell in that folder and run:
-
-   ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
-   ```
-
+1. Download [ALARM 0.6.1 for Windows x64](https://github.com/ibrahimbouillet/Alarme/releases/download/v0.6.1/ALARM-0.6.1-windows-x64-setup.exe).
+2. Double-click `ALARM-0.6.1-windows-x64-setup.exe` and follow the green setup wizard.
 3. Open **ALARM** from the Start menu.
 
-The installer works for the current Windows user without administrator rights. It installs into `%LOCALAPPDATA%\Programs\ALARM`, creates a Start menu shortcut, and adds ALARM to Windows installed apps. Installation does not launch the app or enable an alarm automatically.
+The installer works offline for the current Windows user without administrator rights. It installs into `%LOCALAPPDATA%\Programs\ALARM`, creates a Start menu shortcut, and adds ALARM to Windows installed apps. Installation does not launch the app or enable an alarm automatically. You do not need PowerShell commands, developer tools, an account, or a separate .NET runtime.
 
-For portable use, open `ALARM.exe` directly from the extracted folder. Keep that folder in a stable location if you enable startup with Windows. You do not need a compiler, an account, or a separate .NET runtime to use the alarm.
+The installer and application are unsigned, so Windows SmartScreen may display an unknown-publisher warning. Only continue if you trust the download from this repository's [release page](https://github.com/ibrahimbouillet/Alarme/releases/tag/v0.6.1).
+
+If ALARM was previously installed using `install.ps1`, uninstall that copy from Windows installed apps before running the graphical installer. Your saved settings are preserved.
+
+For portable use, download [the ZIP package](https://github.com/ibrahimbouillet/Alarme/releases/download/v0.6.1/ALARM-0.6.1-windows-x64.zip), extract it, and open `ALARM.exe`. Keep that folder in a stable location if you enable startup with Windows. The ZIP also retains the optional `install.ps1` script; see the [installation guide](INSTALL.md). GitHub's **Source code** downloads are for developers.
 
 ## Set your first alarm
 
@@ -59,13 +58,13 @@ ctest --preset windows-msvc
 
 The release workflow is validated with GCC UCRT64. The Visual Studio preset requires verification with your installed toolchain; see the [developer guide](docs/DEVELOPMENT_STRATEGY.md#build-requirements) for tool installation.
 
-Create the installable portable archive with:
+Create the portable archive with:
 
 ```powershell
 powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\package.ps1
 ```
 
-The archive is written to `out\releases\ALARM-0.6.1-windows-x64.zip`. Optional graphics demos and the experimental Windows widget provider have separate dependencies and are not part of the standard alarm installation.
+The archive is written to `out\releases\ALARM-0.6.1-windows-x64.zip`. To create the graphical installer from that exact payload, install [Inno Setup 6](https://jrsoftware.org/isdl.php) and follow the [packaging instructions](docs/PUBLISHING.md#build-the-windows-installer). Optional graphics demos and the experimental Windows widget provider have separate dependencies and are not part of the standard alarm installation.
 
 Read the [developer guide](docs/DEVELOPMENT_STRATEGY.md) and [contribution guide](CONTRIBUTING.md) for the project layout, optional builds, and validation. The [publishing guide](docs/PUBLISHING.md) explains how to prepare a clean public source snapshot.
 

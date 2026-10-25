@@ -7,22 +7,40 @@ ALARM is a native Windows alarm programmed by **Ibrahim Bouillet**.
 Requirements: Windows 10 or 11, a 64-bit PC, an audio output and a Direct3D 11
 compatible graphics device. This package needs no compiler, account or .NET runtime.
 
-1. Extract the release ZIP into a folder.
-2. Open PowerShell in that folder and run:
-
-   ```powershell
-   powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
-   ```
-
+1. Download [ALARM-0.6.1-windows-x64-setup.exe](https://github.com/ibrahimbouillet/Alarme/releases/download/v0.6.1/ALARM-0.6.1-windows-x64-setup.exe).
+2. Double-click it and follow the green setup wizard.
 3. Open **ALARM** from the Start menu.
 
 Installation is for the current user, without administrator rights. The default
 location is `%LOCALAPPDATA%\Programs\ALARM`. A Start menu shortcut and Windows
-installed-app entry are created. Installation never starts the app automatically.
+installed-app entry are created. Installation works offline and never starts the
+app or enables an alarm automatically. No terminal commands are required.
+
+The installer and application are unsigned. Windows SmartScreen may show an
+unknown-publisher warning; only continue if you trust the download from the
+[official release page](https://github.com/ibrahimbouillet/Alarme/releases/tag/v0.6.1).
+
+## Portable ZIP and scripted installation
+
+Download [ALARM-0.6.1-windows-x64.zip](https://github.com/ibrahimbouillet/Alarme/releases/download/v0.6.1/ALARM-0.6.1-windows-x64.zip)
+and extract it into a folder. GitHub's **Source code** downloads do not contain a
+ready-to-run application.
 
 For portable use, launch `ALARM.exe` directly from the extracted folder. Keep it
 at a stable location if you enable startup with Windows. The executable and
-PowerShell scripts are unsigned.
+PowerShell scripts are unsigned. To install from the ZIP instead, open PowerShell
+in its extracted folder and run:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+Then open **ALARM** from the Start menu. Quit an existing instance before installing
+or upgrading with either installer. Your saved alarm settings are preserved.
+
+If you previously installed ALARM with `install.ps1`, uninstall that copy first
+from Windows installed apps, then run the graphical installer. Your personal
+settings and custom sounds are kept.
 
 ## Set your first alarm
 
@@ -54,8 +72,10 @@ Read the [user guide](docs/PRODUCT.md),
 
 ## Uninstall
 
-Quit ALARM first, then use its Windows installed-app entry or run `uninstall.ps1`
-from the installation folder. Your settings, logs and custom WAV files are preserved.
+Quit ALARM first, then use **Settings > Apps > Installed apps > ALARM > Uninstall**
+(**Apps & features** on Windows 10). For a scripted ZIP installation, you can also
+run `uninstall.ps1` from its installation folder. Your settings, logs and custom
+WAV files are preserved.
 For portable use, disable Windows startup, quit ALARM and remove its folder.
 
 ## License

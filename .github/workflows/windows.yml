@@ -33,10 +33,29 @@ jobs:
       # Hosted runners cannot establish physical audio, wake or interactive desktop behavior.
       - name: Prepare downloadable package
         run: powershell.exe -NoProfile -ExecutionPolicy Bypass -File scripts/package.ps1 -SkipBuild -SkipTests
+      - name: Prepare graphical Windows installer
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $archives = @(Get-ChildItem -LiteralPath out/releases -Filter 'ALARM-*-windows-x64.zip')
+          if ($archives.Count -ne 1) { throw 'Expected exactly one ALARM release ZIP.' }
+          $payload = Join-Path $env:RUNNER_TEMP ('alarm-installer-' + [guid]::NewGuid().ToString('N'))
+          Expand-Archive -LiteralPath $archives[0].FullName -DestinationPath $payload
+          $iscc = Join-Path ${env:ProgramFiles(x86)} 'Inno Setup 6\ISCC.exe'
+          if (-not (Test-Path -LiteralPath $iscc)) { throw 'Inno Setup 6 is missing from the hosted Windows runner.' }
+          & ./scripts/package-installer.ps1 -PayloadDirectory $payload -OutputDirectory out/releases -IsccPath $iscc
+      - name: Test installer lifecycle
+        shell: pwsh
+        run: |
+          $installers = @(Get-ChildItem -LiteralPath out/releases -Filter 'ALARM-*-windows-x64-setup.exe')
+          if ($installers.Count -ne 1) { throw 'Expected exactly one ALARM installer.' }
+          & ./scripts/test-installer.ps1 -InstallerPath $installers[0].FullName -ExpectedExecutable build/ALARM.exe -OutputDirectory .local/installer-validation
+      # Private setup logs contain local paths and are not uploaded.
       - uses: actions/upload-artifact@v4
         with:
           name: ALARM-windows-x64
           path: |
             out/releases/*.zip
+            out/releases/*-setup.exe
             out/releases/*.sha256
           if-no-files-found: error
