@@ -74,6 +74,12 @@ Settings and local diagnostic logs are stored in `%LOCALAPPDATA%\Ibrahim\ALARM`.
 
 The alarm works offline and has no telemetry or account requirement. Logs can contain local paths and audio device details; review them before attaching them to a public issue. Uninstallation preserves your personal settings and logs.
 
+Read the [Privacy Policy](PRIVACY.md) for local data, retention, removal, Windows integration, and external service details.
+
+## Code signing policy
+
+ALARM is preparing an application to [SignPath Foundation](https://signpath.org/) for free open-source code signing. Approval and integration are not yet complete; current downloads remain unsigned. The [code signing policy](CODE_SIGNING.md) describes the current status, responsible maintainer, planned release approvals, and privacy commitments.
+
 ## Author and license
 
 Programmer: **Ibrahim Bouillet**. ALARM is distributed under the [MIT License](LICENSE). [Third-party notices](THIRD_PARTY_NOTICES.md) are retained for the bundled runtimes and optional widget prototype.
